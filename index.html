@@ -1,12 +1,95 @@
+드래그해서 이미지를 넘기는 슬라이더를 구현하려면 일반적으로 JavaScript와 이벤트 핸들링을 사용해야 합니다. 아래는 드래그로 이미지를 넘길 수 있는 슬라이더를 구현한 코드입니다. 이 코드는 터치 이벤트 및 마우스 이벤트를 사용하여 이미지를 드래그하면서 슬라이드를 전환합니다.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 슬라이드쇼</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            touch-action: pan-y; /* 터치 이벤트에 대한 스크롤 방지 */
+        }
+
+        .mySlides {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .mySlides img {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <p>Hello, World!</p>
+
+<div class="slideshow-container" onmousedown="startDrag(event)" ontouchstart="startDrag(event)">
+    <div class="mySlides" onmousemove="drag(event)" ontouchmove="drag(event)">
+        <img src="./img/1.gif">
+        <img src="./img/2.jpg">
+        <img src="./img/3.jpg">
+        <img src="./img/4.jpg">
+        <img src="./img/5.jpg">
+        <img src="./img/6.jpg">
+    </div>
+</div>
+
+<script>
+    var startX = 0;
+    var startTransform = 0;
+    var isDragging = false;
+
+    function startDrag(event) {
+        startX = event.clientX || event.touches[0].clientX;
+        startTransform = getTransformValue();
+        isDragging = true;
+    }
+
+    function drag(event) {
+        if (!isDragging) return;
+
+        var currentX = event.clientX || event.touches[0].clientX;
+        var deltaX = currentX - startX;
+        var newTransform = startTransform + deltaX;
+
+        setTransformValue(newTransform);
+    }
+
+    function endDrag() {
+        isDragging = false;
+    }
+
+    function getTransformValue() {
+        var slides = document.querySelector('.mySlides');
+        var transformValue = window.getComputedStyle(slides).getPropertyValue('transform');
+        var matrix = new WebKitCSSMatrix(transformValue);
+        return matrix.m41;
+    }
+
+    function setTransformValue(value) {
+        var slides = document.querySelector('.mySlides');
+        slides.style.transform = 'translateX(' + value + 'px)';
+    }
+
+    document.addEventListener('mouseup', endDrag);
+    document.addEventListener('touchend', endDrag);
+</script>
+
 </body>
 </html>
+```
+
+이 코드는 터치 이벤트와 마우스 이벤트를 모두 처리하며, 사용자가 드래그하는 동안 이미지가 이동합니다. 드래그를 시작할 때 `startDrag` 함수가 호출되고, 드래그 중에는 `drag` 함수가 호출됩니다. 드래그가 끝날 때는 `endDrag` 함수가 호출됩니다.
+
+이 코드에서는 `transform` 속성을 사용하여 이미지를 이동시키고 있습니다. 드래그 중에 발생한 변화를 `translateX`로 적용하여 이미지가 좌우로 이동하게 됩니다.
