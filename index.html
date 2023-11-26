@@ -17,7 +17,7 @@
 
         #carousel-container {
             overflow: hidden;
-            width: 40%;
+            width: 80%; /* 변경: 화면 크기에 따라 조정 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -30,22 +30,28 @@
             min-width: 100%;
             box-sizing: border-box;
         }
+
+        /* 미디어 쿼리 추가: 화면 너비가 600px 이하일 때 스타일 조정 */
+        @media (max-width: 600px) {
+            #carousel-container {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div id="carousel-container">
     <div id="carousel">
-        <div class="slide"><img src="./img/1.gif" alt="Image 1" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/2.jpg" alt="Image 2" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/3.jpg" alt="Image 3" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/4.jpg" alt="Image 4" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/5.jpg" alt="Image 5" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/6.jpg" alt="Image 6" width="1080" height="1080"></div>
+        <div class="slide"><img src="image1.jpg" alt="Image 1" width="1440" height="3120"></div>
+        <div class="slide"><img src="image2.jpg" alt="Image 2" width="1440" height="3120"></div>
+        <div class="slide"><img src="image3.jpg" alt="Image 3" width="1440" height="3120"></div>
+        <div class="slide"><img src="image4.jpg" alt="Image 4" width="1440" height="3120"></div>
+        <div class="slide"><img src="image5.jpg" alt="Image 5" width="1440" height="3120"></div>
+        <div class="slide"><img src="image6.jpg" alt="Image 6" width="1440" height="3120"></div>
     </div>
 </div>
 
-<!-- 스크립트 부분 수정 -->
 <script>
     const carousel = document.getElementById('carousel');
     let currentIndex = 0;
