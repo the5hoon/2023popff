@@ -1,87 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이미지 슬라이드쇼</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            touch-action: pan-y; /* 터치 이벤트에 대한 스크롤 방지 */
-        }
-
-        .mySlides {
-            display: flex;
-            width: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .mySlides img {
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-
-<div class="slideshow-container" onmousedown="startDrag(event)" ontouchstart="startDrag(event)">
-    <div class="mySlides" onmousemove="drag(event)" ontouchmove="drag(event)">
-        <img src="./img/1.gif">
-        <img src="./img/2.jpg">
-        <img src="./img/3.jpg">
-        <img src="./img/4.jpg">
-        <img src="./img/5.jpg">
-        <img src="./img/6.jpg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla js slide with drag(swipe)</title>
+    <link rel="stylesheet" href="./slide.css" />
+  </head>
+  <body>
+    <div class="slide slide_wrap">
+      <div class="slide_item">
+          <img src="./img/1.gif"> 
+      </div>
+      <div class="slide_item">
+          <img src="./img/2.jpg"> 
+      </div>
+      <div class="slide_item">
+          <img src="./img/3.jpg"> 
+      </div>
+      <div class="slide_item">
+          <img src="./img/4.jpg"> 
+      </div>
+      <div class="slide_item">
+          <img src="./img/5.jpg"> 
+      </div>
+      <div class="slide_item">
+          <img src="./img/6.jpg"> 
+      </div>
+      <div class="slide_prev_button slide_button"> </div>
+      <div class="slide_next_button slide_button"> </div>
+      <ul class="slide_pagination"></ul>
     </div>
-</div>
-
-<script>
-    var startX = 0;
-    var startTransform = 0;
-    var isDragging = false;
-
-    function startDrag(event) {
-        startX = event.clientX || event.touches[0].clientX;
-        startTransform = getTransformValue();
-        isDragging = true;
-    }
-
-    function drag(event) {
-        if (!isDragging) return;
-
-        var currentX = event.clientX || event.touches[0].clientX;
-        var deltaX = currentX - startX;
-        var newTransform = startTransform + deltaX;
-
-        setTransformValue(newTransform);
-    }
-
-    function endDrag() {
-        isDragging = false;
-    }
-
-    function getTransformValue() {
-        var slides = document.querySelector('.mySlides');
-        var transformValue = window.getComputedStyle(slides).getPropertyValue('transform');
-        var matrix = new WebKitCSSMatrix(transformValue);
-        return matrix.m41;
-    }
-
-    function setTransformValue(value) {
-        var slides = document.querySelector('.mySlides');
-        slides.style.transform = 'translateX(' + value + 'px)';
-    }
-
-    document.addEventListener('mouseup', endDrag);
-    document.addEventListener('touchend', endDrag);
-</script>
-
-</body>
+    <script src="./slide.js"></script>
+  </body>
 </html>
