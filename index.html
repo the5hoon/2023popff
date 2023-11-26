@@ -17,7 +17,7 @@
 
         #carousel-container {
             overflow: hidden;
-            width: 50%; /* 변경: 화면 크기에 따라 조정 */
+            width: 80%; /* 변경: 화면 크기에 따라 조정 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -58,7 +58,7 @@
     let touchStartX = 0;
 
     function showSlide(index) {
-        const newPosition = -index * 100 + '%';
+        const newPosition = -index * (100 / 6) + '%'; 
         carousel.style.transform = 'translateX(' + newPosition + ')';
     }
 
@@ -84,8 +84,7 @@
         }
     }
 
-    setInterval(nextSlide, 3000); // 자동으로 슬라이드 전환 (3초마다)
-
+    setInterval(nextSlide, 3000); 
     carousel.addEventListener('touchstart', handleTouchStart, false);
     carousel.addEventListener('touchmove', handleTouchMove, false);
 </script>
