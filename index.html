@@ -24,11 +24,17 @@
         #carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            width: 600%
         }
 
         .slide {
             min-width: 100%;
             box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
         }
 
         /* 미디어 쿼리 추가: 화면 너비가 600px 이하일 때 스타일 조정 */
@@ -43,12 +49,12 @@
 
 <div id="carousel-container">
     <div id="carousel">
-        <div class="slide"><img src="./img/1.gif" alt="Image 1" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/2.jpg" alt="Image 2" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/3.jpg" alt="Image 3" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/4.jpg" alt="Image 4" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/5.jpg" alt="Image 5" width="1080" height="1080"></div>
-        <div class="slide"><img src="./img/6.jpg" alt="Image 6" width="1080" height="1080"></div>
+        <div class="slide"><img src="./img/1.gif" alt="Image 1"></div>
+        <div class="slide"><img src="./img/2.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="./img/3.jpg" alt="Image 3"></div>
+        <div class="slide"><img src="./img/4.jpg" alt="Image 4"></div>
+        <div class="slide"><img src="./img/5.jpg" alt="Image 5"></div>
+        <div class="slide"><img src="./img/6.jpg" alt="Image 6"></div>
     </div>
 </div>
 
