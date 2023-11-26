@@ -17,19 +17,20 @@
 
         #carousel-container {
             overflow: hidden;
-            width: 80%; /* 변경: 화면 크기에 따라 조정 */
+            width: 80%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         #carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
-            width: 600%
+            width: 600%;
         }
 
         .slide {
-            min-width: 100%;
+            flex: 0 0 auto; /* 변경: 고정 크기로 설정 */
             box-sizing: border-box;
+            width: 100%;
         }
 
         img {
@@ -64,7 +65,7 @@
     let touchStartX = 0;
 
     function showSlide(index) {
-        const newPosition = -index * (100 / 6) + '%'; 
+        const newPosition = -index * (100 / 6) + '%';
         carousel.style.transform = 'translateX(' + newPosition + ')';
     }
 
@@ -90,7 +91,7 @@
         }
     }
 
-    setInterval(nextSlide, 3000); 
+    setInterval(nextSlide, 3000);
     carousel.addEventListener('touchstart', handleTouchStart, false);
     carousel.addEventListener('touchmove', handleTouchMove, false);
 </script>
